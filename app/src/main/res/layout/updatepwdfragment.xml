@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.hpzl.businessedition.customerview.TitleBarView
+        android:id="@+id/tbv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.hpzl.businessedition.customerview.TitleBarView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tbv"
+        android:background="#e5e5e5e5"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:layout_marginRight="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_40"
+            android:background="@drawable/shape_pay"
+            android:orientation="vertical">
+
+            <com.hpzl.businessedition.customerview.LineEditTextView
+                android:id="@+id/let1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.hpzl.businessedition.customerview.LineEditTextView
+                    android:id="@+id/let2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:layout_marginRight="8dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="4dp"
+                    android:text="获取验证码" />
+
+            </RelativeLayout>
+
+
+            <com.hpzl.businessedition.customerview.LineEditTextView
+                android:id="@+id/let3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.hpzl.businessedition.customerview.LineEditTextView
+                android:id="@+id/let4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_commit"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_40"
+            android:layout_margin="20dp"
+            android:background="@drawable/shape_btn_signin"
+            android:focusable="true"
+
+            android:text="提交"
+            android:textColor="@color/text_white"
+            android:textSize="@dimen/textsize_level2" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

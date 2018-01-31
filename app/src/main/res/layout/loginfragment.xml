@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_gray"
+    android:paddingTop="@dimen/statubar_height">
+
+
+    <ImageView
+        android:id="@+id/ivclose"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="25dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/close"
+
+
+        />
+
+    <ImageView
+        android:id="@+id/iv_signin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_150"
+        android:layout_marginTop="@dimen/statubar_height"
+        android:scaleType="fitCenter"
+        android:src="@drawable/sign_in_top" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_signin"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_80"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_40"
+        android:background="@drawable/shape_pay">
+
+        <TextView
+            android:id="@+id/tv_signin_mobile"
+            android:layout_width="@dimen/width_80"
+            android:layout_height="@dimen/height_40"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_15"
+            android:text="@string/mobile"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/normal_textsize" />
+
+        <EditText
+            android:id="@+id/et_signin_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_40"
+            android:layout_toRightOf="@+id/tv_signin_mobile"
+            android:background="@null"
+            android:hint="@string/hint_mobile"
+            android:inputType="phone"
+            android:textColor="@color/text_black"
+            android:textColorHint="@color/text_hint"
+            android:textSize="@dimen/normal_textsize" />
+
+        <TextView
+            android:id="@+id/tv_signin_password"
+            android:layout_width="@dimen/width_80"
+            android:layout_height="@dimen/height_40"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/margin_15"
+            android:text="@string/password"
+            android:textColor="@color/shape_reserve_top_bg"
+            android:textSize="@dimen/normal_textsize" />
+
+        <EditText
+            android:id="@+id/et_signin_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_40"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/tv_signin_password"
+            android:background="@null"
+            android:hint="@string/hint_password"
+            android:inputType="textPassword"
+            android:textColor="@color/shape_reserve_top_bg"
+            android:textColorHint="@color/text_hint"
+            android:textSize="@dimen/normal_textsize" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height_1px"
+            android:layout_below="@+id/tv_signin_mobile"
+            android:background="@color/pay_reserve_list_divider_white" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_signin_forget_pwd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_35"
+        android:layout_marginTop="@dimen/margin_15"
+
+        android:text="@string/forget_password"
+        android:textColor="@color/shape_reserve_top_bg"
+        android:textSize="@dimen/textsize_levelsmall" />
+
+    <TextView
+        android:id="@+id/tv_signin_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_signin_forget_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_35"
+
+        android:text="@string/mobile_register"
+        android:textColor="@color/shape_reserve_top_bg"
+        android:textSize="@dimen/textsize_levelsmall" />
+
+    <Button
+        android:id="@+id/btn_signin"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/relativeLayout"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signin_forget_pwd"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_40"
+        android:layout_marginTop="@dimen/margin_55"
+        android:background="@drawable/shape_btn_signin"
+        android:focusable="true"
+
+        android:text="@string/signin"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/textsize_level2" />
+
+
+</android.support.constraint.ConstraintLayout>
