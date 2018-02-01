@@ -23,70 +23,30 @@ import com.hpzl.businessedition.utils.SPUtils
  * @author admin
  * @date 2018/1/30
  */
-class Main1Fragment : BaseFragment(), View.OnClickListener, Main1View {
-    override fun setReserveTopData(t: ReserveTopModel) {
-        val value = arrayOf(t.content.waiteQueue, t.content.waiteOrder, t.content.noArrive, t.content.orderDone)
-        titles.forEachIndexed { index, s ->
-            val tab = tablayout.getTabAt(index)//获得每一个tab
-            TabTitle(mContext)
-            val tabTitle = TabTitle(mContext)
-            tab?.customView = tabTitle
-            if (index == 0) tabTitle.setchecked(true)
-            tabTitle.setValue(s, value[index])
+class Main1Fragment : BaseFragment() {
+
+    companion object {
+        fun newInstance(): Main1Fragment {
+            val args = Bundle()
+            val fragment = Main1Fragment()
+            fragment.arguments = args
+            return fragment
         }
     }
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.iv_qrScan -> {
-            }
-            R.id.tv_search -> {
-            }
-            else -> {
-            }
-        }
-    }
-
-    private val titles = arrayOf("待处理", "已预订", "取消", "消费")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return View.inflate(mContext, R.layout.main1fragment, null)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        if (findChildFragment(ViewPager1Fragment::class.java) == null) {
+            loadRootFragment(R.id.fl_1_container, ViewPager1Fragment.newInstance())
+        }
+    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-        val list = mutableListOf<BaseFragment>().addElement(Main1_1Fragment()).addElement(Main1_2Fragment()).addElement(Main1_3Fragment()).addElement(Main1_4Fragment())
-
-        viewpager.adapter = Main1FragmentAdapter(fragmentManager, list)
-        tablayout.setupWithViewPager(viewpager)
-
-        iv_qrScan.setOnClickListener(this)
-        tv_search.setOnClickListener(this)
-        var main1Present = Main1Present(this)
-        main1Present.getTopcount(SPUtils.getString("token", "-1"))
-
-
-
-
-
-
-
-        tablayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                (tab.customView as TabTitle).setchecked(true)
-                viewpager.currentItem = tab.position
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                (tab.customView as TabTitle).setchecked(false)
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-
-            }
-        })
-
+    override fun onLazyInitView(savedInstanceState: Bundle?) {
+        super.onLazyInitView(savedInstanceState)
+        // 这里可以不用懒加载,因为Adapter的场景下,Adapter内的子Fragment只有在父Fragment是show状态时,才会被Attach,Create
     }
 }

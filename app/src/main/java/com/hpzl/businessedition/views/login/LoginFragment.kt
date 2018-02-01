@@ -2,6 +2,7 @@ package com.hpzl.businessedition.views.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -20,11 +21,12 @@ import kotlinx.android.synthetic.main.loginfragment.*
  * @author admin
  * @date 2018/1/29
  */
-class LoginFragment : BaseFragment(), View.OnClickListener, LoginView {
+class LoginFragment : Fragment(), View.OnClickListener, LoginView {
     override fun setData() {
 
 
-        startActivity(Intent(mContext, MainActivity::class.java))
+        startActivity(Intent(BaseApp.instance, MainActivity::class.java))
+        (this@LoginFragment.activity as LoginActivity).finish()
     }
 
     override fun onClick(v: View?) {
@@ -47,9 +49,10 @@ class LoginFragment : BaseFragment(), View.OnClickListener, LoginView {
             R.id.btn_signin -> {
 
                 if (!TextUtils.isEmpty(SPUtils.getString("token", ""))) {
-                    startActivity(Intent(mContext, MainActivity::class.java))
+                    startActivity(Intent(BaseApp.instance, MainActivity::class.java))
+                    (this@LoginFragment.activity as LoginActivity).finish()
                 } else {
-                    val loginPresenter = LoginPresenter(mContext, this)
+                    val loginPresenter = LoginPresenter(BaseApp.instance, this)
                     //    loginPresenter.login(et_signin_mobile.text.trim().toString(),et_signin_password.text.toString().trim(),"12233","android")
                     loginPresenter.login("13668018462", "123456", "12233", "android")
                 }

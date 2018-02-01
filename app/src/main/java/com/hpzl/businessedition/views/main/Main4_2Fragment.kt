@@ -14,7 +14,7 @@ import com.hpzl.businessedition.base.BaseFragment
  */
 class Main4_2Fragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return View.inflate(mContext, R.layout.main4fragment, null)
+        return View.inflate(mContext, R.layout.main4_1fragment, null)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

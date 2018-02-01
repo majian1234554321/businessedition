@@ -23,11 +23,17 @@ class SplashActivity : BaseActivity() {
 
 
 
+        if (true) {
+            Flowable.timer(3, TimeUnit.SECONDS)
+                    .subscribe(Consumer {
+                        Log.i("TAG", it.toString())
+                        startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                        finish()
+                    })
+        } else {
 
-        Flowable.timer(3, TimeUnit.SECONDS)
-                .subscribe(Consumer {
-                    Log.i("TAG", it.toString())
-                    startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-                })
+        }
+
+
     }
 }

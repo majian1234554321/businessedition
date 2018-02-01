@@ -6,6 +6,9 @@ import com.hpzl.businessedition.model.FindPasswordModel
 import com.hpzl.businessedition.model.ReserveMainModel
 import com.hpzl.businessedition.model.ReserveTopModel
 import io.reactivex.Flowable
+import io.reactivex.Observable
+import io.reactivex.Observer
+import io.reactivex.internal.operators.observable.ObservableError
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.http.Multipart
@@ -42,6 +45,8 @@ interface WEB_API {
     fun reserve_top(@Part args: MultipartBody.Part): Flowable<ReserveTopModel>
 
 
-
+    @Multipart
+    @POST("My/roomtype")
+    fun roomtype(@Part args: MultipartBody.Part): Observable<ResponseBody>
 
 }

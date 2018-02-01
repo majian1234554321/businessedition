@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hpzl.businessedition.R
 import com.hpzl.businessedition.base.BaseFragment
 
 /**
@@ -13,7 +14,7 @@ import com.hpzl.businessedition.base.BaseFragment
  */
 class Main3_3Fragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return View.inflate(mContext, R.layout.main3_1fragment, null)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

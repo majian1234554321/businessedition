@@ -13,6 +13,15 @@ import com.hpzl.businessedition.base.BaseFragment
  * @date 2018/1/30
  */
 class Main5Fragment : BaseFragment() {
+
+    companion object {
+        fun newInstance(): Main5Fragment {
+            val args = Bundle()
+            val fragment = Main5Fragment()
+            fragment.setArguments(args)
+            return fragment
+        }
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return View.inflate(mContext, R.layout.main5fragment, null)
     }

@@ -13,9 +13,9 @@ import com.hpzl.businessedition.base.BaseFragment
  * @author admin
  * @date 2018/1/30
  */
-class Main2FragmentAdapter(fm: FragmentManager?, val list: MutableList<BaseFragment>) : FragmentStatePagerAdapter(fm) {
+class Main3FragmentAdapter(fm: FragmentManager?, val list: MutableList<BaseFragment>) : FragmentStatePagerAdapter(fm) {
 
-    val array = arrayOf("房型管理", "房间管理", "房态管理")
+    val array = arrayOf("待处理订单", "已完成订单", "套餐管理")
 
     override fun getItem(position: Int): Fragment = list[position]
 

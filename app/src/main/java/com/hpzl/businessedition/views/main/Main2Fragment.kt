@@ -16,20 +16,28 @@ import kotlinx.android.synthetic.main.main2fragment.*
  * @date 2018/1/30
  */
 class Main2Fragment : BaseFragment() {
+    companion object {
+        fun newInstance(): Main2Fragment {
+            val args = Bundle()
+            val fragment = Main2Fragment()
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return View.inflate(mContext, R.layout.main2fragment, null)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        if (findChildFragment(ViewPager2Fragment::class.java) == null) {
+            loadRootFragment(R.id.fl_second_container, ViewPager2Fragment.newInstance())
+        }
+    }
 
-        val list = mutableListOf<BaseFragment>().addElement(Main2_1Fragment()).addElement(Main2_2Fragment()).addElement(Main2_3Fragment())
-
-        viewpager.adapter = Main2FragmentAdapter(fragmentManager, list)
-        tablayout.setupWithViewPager(viewpager)
-
-
-
-
+    override fun onLazyInitView(savedInstanceState: Bundle?) {
+        super.onLazyInitView(savedInstanceState)
+        // 这里可以不用懒加载,因为Adapter的场景下,Adapter内的子Fragment只有在父Fragment是show状态时,才会被Attach,Create
     }
 }
