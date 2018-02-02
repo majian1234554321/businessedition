@@ -1,43 +1,60 @@
 package com.hpzl.businessedition.views.main
 
 import android.os.Bundle
+import android.support.design.widget.TabLayout
+import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import com.hpzl.businessedition.R
-import com.hpzl.businessedition.adapter.Main1FragmentAdapter
 import com.hpzl.businessedition.adapter.Main2FragmentAdapter
 import com.hpzl.businessedition.base.BaseFragment
-import kotlinx.android.synthetic.main.main2fragment.*
+import kotlinx.android.synthetic.main.viewpager2fragment.*
+
+import me.yokeyword.fragmentation.SupportFragment
+
 
 /**
- *
- * @author admin
- * @date 2018/1/30
- */
+*
+* @author 12345
+* @date
+*/
 class Main2Fragment : BaseFragment() {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.viewpager2fragment, container, false)
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        tablayout.addTab(tablayout.newTab())
+        tablayout.addTab(tablayout.newTab())
+        tablayout.addTab(tablayout.newTab())
+
+        val list = mutableListOf<BaseFragment>()
+
+        list.add(Main2_1Fragment())
+        list.add(Main2_2Fragment())
+        list.add(Main2_3Fragment())
+
+
+
+        viewpager.adapter = Main2FragmentAdapter(childFragmentManager, list)
+        tablayout.setupWithViewPager(viewpager)
+    }
+
+
     companion object {
+
         fun newInstance(): Main2Fragment {
+
             val args = Bundle()
+
             val fragment = Main2Fragment()
             fragment.arguments = args
             return fragment
         }
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return View.inflate(mContext, R.layout.main2fragment, null)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        if (findChildFragment(ViewPager2Fragment::class.java) == null) {
-            loadRootFragment(R.id.fl_second_container, ViewPager2Fragment.newInstance())
-        }
-    }
-
-    override fun onLazyInitView(savedInstanceState: Bundle?) {
-        super.onLazyInitView(savedInstanceState)
-        // 这里可以不用懒加载,因为Adapter的场景下,Adapter内的子Fragment只有在父Fragment是show状态时,才会被Attach,Create
     }
 }

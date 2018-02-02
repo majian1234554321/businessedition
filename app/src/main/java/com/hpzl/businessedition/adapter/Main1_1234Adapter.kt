@@ -22,8 +22,37 @@ class Main1_1234Adapter(val context: Context, val content: Array<ReserveMainMode
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         with(holder?.itemView!!) {
-            textview.text = content[position].car_num
+            tv_payStatus.text = when (content[position].pay_method) {
+
+                "0" -> {
+                    "正在消费"
+                }
+
+                "3" -> {
+                    "已消费"
+                }
+                else -> {
+                    "未知" + content[position].pay_method
+                }
+            }
+
+
+            tv1.text = "姓名: ${content[position].nickname}"
+            tv2.text = "电话: ${content[position].mobile}"
+            tv3.text = "宾客: ${content[position].people_num}"
+            tv4.text = "房型: ${content[position].name}"
+            tv5.text = "车位: ${content[position].car_num}"
+            tv6.text = "房号: ${content[position].number}"
+            tv7.text = "预留时间: ${content[position].nickname}"
+            tv8.text = "订金: ${content[position].nickname}"
+            tv9.text = "下单时间: ${content[position].nickname}"
+            tv10.text = "消费: ${content[position].display_balance}"
         }
+    }
+
+    fun addData(value: Array<ReserveMainModel.ContentBean>) {
+        content.plus(value)
+        notifyDataSetChanged()
     }
 
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)

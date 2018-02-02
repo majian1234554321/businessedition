@@ -15,7 +15,7 @@ import com.hpzl.businessedition.model.ReserveMainModel
  * @date 2018/1/30
  */
 class Main1_3Fragment : BaseFragment() , Main1_1234View {
-    override fun setMain1_1234Data(t: ReserveMainModel) {
+    override fun setMain1_1234Data(t: ReserveMainModel, action: String) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

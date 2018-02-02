@@ -8,6 +8,8 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.hpzl.businessedition.R
+import com.hpzl.businessedition.imp.TitleBarClickListener
+
 
 /**
  *
@@ -16,7 +18,9 @@ import com.hpzl.businessedition.R
  */
 class TitleBarView : RelativeLayout {
 
+
     var title: TextView? = null
+    var ivleft: ImageView? = null
 
     constructor(context: Context?) : super(context) {
         initView(context)
@@ -32,14 +36,20 @@ class TitleBarView : RelativeLayout {
 
     private fun initView(context: Context?) {
         val view = View.inflate(context, R.layout.titlebarview, this)
-        view.findViewById<ImageView>(R.id.iv).setOnClickListener {
-            (context as Activity).finish()
-        }
 
+        ivleft = view.findViewById<ImageView>(R.id.iv)
         title = view.findViewById<TextView>(R.id.title)
+    }
+
+    fun setOnLeftClickListener(titleBarClickListener: TitleBarClickListener) {
+        ivleft?.setOnClickListener {
+            titleBarClickListener.setOnLeftClickListener()
+        }
     }
 
     fun setTitle(value: String) {
         title?.text = value
     }
+
+
 }

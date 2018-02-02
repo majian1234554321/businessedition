@@ -8,5 +8,5 @@ import com.hpzl.businessedition.model.ReserveMainModel
  * @date 2018/1/31
  */
 interface Main1_1234View {
-    fun setMain1_1234Data(t: ReserveMainModel)
+    fun setMain1_1234Data(t: ReserveMainModel,action: String)
 }

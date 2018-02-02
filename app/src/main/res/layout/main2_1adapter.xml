@@ -1,28 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_housetype"
+        android:layout_width="@dimen/width_40"
+        android:layout_height="@dimen/height_40"
+        android:layout_marginBottom="@dimen/margin_21"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginTop="@dimen/margin_21"
+        android:gravity="center_vertical"
+        android:scaleType="fitXY"
+         />
 
     <TextView
-        android:id="@+id/tv_left"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="1212" />
-
-    <TextView
-        android:id="@+id/tv_right"
+        android:id="@+id/tv_housetype_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/colorPrimaryDark"
-        tools:text="1212" />
+        android:layout_marginBottom="@dimen/margin_33"
+        android:layout_marginStart="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_33"
+        android:layout_toEndOf="@+id/iv_housetype"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/textsize_levelmedium" />
+    <!-- android:text="@{store.name}"-->
+
+    <TextView
+        android:id="@+id/tv_housetype_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_33"
+        android:layout_marginTop="@dimen/margin_33"
+        android:layout_toLeftOf="@+id/tv_housetype_prive_qi"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_red"
+        android:textSize="@dimen/textsize_levelmedium" />
+
+    <TextView
+        android:id="@+id/tv_housetype_prive_qi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_housetype_price"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/margin_15"
+        android:gravity="center_vertical"
+        android:text="起"
+        android:textColor="@color/text_red"
+        android:textSize="@dimen/textsize_11" />
 
     <View
+        android:layout_below="@+id/tv_housetype_price"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_below="@+id/tv_right"
-        android:background="#e5e5e5e5" />
-
+        android:background="@color/item_bg_press_E5"
+        android:layout_height="1px"/>
 
 </RelativeLayout>
