@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import com.hpzl.businessedition.R
 import com.hpzl.businessedition.base.BaseActivity
+import com.hpzl.businessedition.utils.SPUtils
 import com.hpzl.businessedition.views.login.LoginActivity
 import io.reactivex.Flowable
 import io.reactivex.Observable
@@ -22,18 +23,17 @@ class SplashActivity : BaseActivity() {
 
 
 
-
-        if (true) {
-            Flowable.timer(3, TimeUnit.SECONDS)
-                    .subscribe(Consumer {
-                        Log.i("TAG", it.toString())
+        Flowable.timer(3, TimeUnit.SECONDS)
+                .subscribe(Consumer {
+                    Log.i("TAG", it.toString())
+                    if ("-1" == SPUtils.getString("token", "-1")) {
                         startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
                         finish()
-                    })
-        } else {
-
-        }
-
-
+                    } else {
+                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                        finish()
+                    }
+                })
     }
 }
+

@@ -4,7 +4,9 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.hpzl.businessedition.R
+import com.hpzl.businessedition.customerview.GlideCircleTransform
 import com.hpzl.businessedition.model.ReserveMainModel
 
 import kotlinx.android.synthetic.main.main1_1fragmentadapter.view.*
@@ -35,8 +37,11 @@ class Main1_1234Adapter(val context: Context, val content: Array<ReserveMainMode
                     "未知" + content[position].pay_method
                 }
             }
+            Glide.with(context).load(content[position].pic).transform(GlideCircleTransform(context)).placeholder(R.mipmap.ic_launcher).//加载中显示的图片
+                    error(R.mipmap.ic_launcher_round)//加载失败时显示的图片
+                    .into(iv)
 
-
+            tv_name.text = "${content[position].nickname}"
             tv1.text = "姓名: ${content[position].nickname}"
             tv2.text = "电话: ${content[position].mobile}"
             tv3.text = "宾客: ${content[position].people_num}"
@@ -47,7 +52,10 @@ class Main1_1234Adapter(val context: Context, val content: Array<ReserveMainMode
             tv8.text = "订金: ${content[position].nickname}"
             tv9.text = "下单时间: ${content[position].nickname}"
             tv10.text = "消费: ${content[position].display_balance}"
+
         }
+
+
     }
 
     fun addData(value: Array<ReserveMainModel.ContentBean>) {

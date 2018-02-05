@@ -15,8 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".views.MainActivity" />
-        <activity android:name=".base.BaseActivity" />
-        <activity android:name=".views.login.LoginActivity" />
+
+        <activity android:name=".views.login.LoginActivity"
+            android:launchMode="singleTop"
+            />
         <activity
             android:name=".views.SplashActivity"
             android:theme="@style/AppTheme2">

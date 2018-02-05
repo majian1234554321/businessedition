@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 
 import com.hpzl.businessedition.R
 import com.hpzl.businessedition.adapter.Main1_1234Adapter
@@ -29,13 +30,19 @@ class Main1_1Fragment : BaseFragment(), XRecyclerView.LoadingListener, Main1_123
     lateinit var main1_1234Adapter: Main1_1234Adapter
     override fun setMain1_1234Data(t: ReserveMainModel, action: String) {
         if (Constants.onRefresh == action) {
+            if (page == 0 && t.content.isEmpty()) {
+                xRecyclerView.setPullRefreshEnabled(false)
+                xRecyclerView.visibility = View.GONE
+                rrrrrr.visibility = View.VISIBLE
+            } else {
+                xRecyclerView.visibility = View.VISIBLE
+                rrrrrr.visibility = View.GONE
+                main1_1234Adapter = Main1_1234Adapter(mContext, t.content)
+                xRecyclerView.adapter = main1_1234Adapter
+                xRecyclerView.refreshComplete()
+            }
 
-            main1_1234Adapter = Main1_1234Adapter(mContext, t.content)
 
-            xRecyclerView.adapter = main1_1234Adapter
-            xRecyclerView.refreshComplete()
-
-           // xRecyclerView.emptyView =
         } else {
             if (t.content.isNotEmpty()) {
                 main1_1234Adapter.addData(t.content)
@@ -60,7 +67,7 @@ class Main1_1Fragment : BaseFragment(), XRecyclerView.LoadingListener, Main1_123
         main1_1234Present.getMain1_1234Data(page.toString(), TYPE, Constants.onRefresh)
     }
 
-    private val TYPE: String = "4"
+    private val TYPE: String = "6"
     var page = 0
     lateinit var main1_1234Present: Main1_1234Present
 
