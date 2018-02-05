@@ -2,7 +2,9 @@ package com.hpzl.businessedition.base
 
 
 import android.content.Context
+import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.View
 import android.widget.Toast
 
 import com.hpzl.businessedition.views.main.Main1Fragment
@@ -27,6 +29,9 @@ abstract class BaseFragment : SupportFragment()  {
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 
 
     override fun onAttach(context: Context) {

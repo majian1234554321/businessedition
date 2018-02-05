@@ -27,7 +27,7 @@ class Main1_4Fragment : BaseFragment(), Main1_1234View, XRecyclerView.LoadingLis
     override fun setMain1_1234Data(t: ReserveMainModel, action: String) {
         if (Constants.onRefresh == action) {
 
-            main1_1234Adapter = Main1_1234Adapter(mContext, t.content)
+            main1_1234Adapter = Main1_1234Adapter(mContext, t.content,this)
 
             xRecyclerView.adapter = main1_1234Adapter
             xRecyclerView.refreshComplete()

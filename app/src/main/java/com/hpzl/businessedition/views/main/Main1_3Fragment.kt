@@ -26,13 +26,14 @@ class Main1_3Fragment : BaseFragment(), Main1_1234View, XRecyclerView.LoadingLis
     override fun setMain1_1234Data(t: ReserveMainModel, action: String) {
         if (Constants.onRefresh == action) {
             if (page == 0 && t.content.isEmpty()) {
-                xRecyclerView.setPullRefreshEnabled(false)
-                xRecyclerView.visibility = View.GONE
+                if (xRecyclerView != null)
+                    xRecyclerView.visibility = View.GONE
                 rrrrrr.visibility = View.VISIBLE
             } else {
-                xRecyclerView.visibility = View.VISIBLE
+                if (xRecyclerView != null)
+                    xRecyclerView.visibility = View.VISIBLE
                 rrrrrr.visibility = View.GONE
-                main1_1234Adapter = Main1_1234Adapter(mContext, t.content)
+                main1_1234Adapter = Main1_1234Adapter(mContext, t.content, this)
                 xRecyclerView.adapter = main1_1234Adapter
                 xRecyclerView.refreshComplete()
             }

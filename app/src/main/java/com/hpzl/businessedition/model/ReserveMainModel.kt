@@ -42,7 +42,7 @@ class ReserveMainModel : BaseModel() {
          */
 
         var id: String? = null
-        var arrival_time: String? = null
+        var arrival_time: Long? = null
         var name: String? = null
         var number: String? = null
         var nickname: String? = null
@@ -53,7 +53,7 @@ class ReserveMainModel : BaseModel() {
         var status: String? = null
         var order_name: String? = null
         var car_num: String? = null
-        var created_time: String? = null
+        var created_time: Long? = null
         var display_prepay: String? = null
         var display_balance: String? = null
         var coupon_amount: String? = null

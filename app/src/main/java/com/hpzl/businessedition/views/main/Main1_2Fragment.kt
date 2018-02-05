@@ -35,7 +35,7 @@ class Main1_2Fragment : BaseFragment(), Main1_1234View, XRecyclerView.LoadingLis
             } else {
                 xRecyclerView.visibility = View.VISIBLE
                 rrrrrr.visibility = View.GONE
-                main1_1234Adapter = Main1_1234Adapter(mContext, t.content)
+                main1_1234Adapter = Main1_1234Adapter(mContext, t.content,this)
                 xRecyclerView.adapter = main1_1234Adapter
                 xRecyclerView.refreshComplete()
             }
