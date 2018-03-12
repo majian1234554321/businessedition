@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 
 import com.hpzl.businessedition.R
 import com.hpzl.businessedition.adapter.Main1_1234Adapter
@@ -14,6 +15,7 @@ import com.hpzl.businessedition.constant.Constants
 import com.hpzl.businessedition.iview.Main1_1234View
 import com.hpzl.businessedition.model.ReserveMainModel
 import com.hpzl.businessedition.presenter.Main1_1234Present
+import com.jcodecraeer.xrecyclerview.ProgressStyle
 import com.jcodecraeer.xrecyclerview.XRecyclerView
 import kotlinx.android.synthetic.main.main1_1fragment.*
 
@@ -24,9 +26,32 @@ import kotlinx.android.synthetic.main.main1_1fragment.*
  * @date 2018/1/30
  */
 class Main1_1Fragment : BaseFragment(), XRecyclerView.LoadingListener, Main1_1234View {
-    override fun setMain1_1234Data(t: ReserveMainModel) {
 
-        xRecyclerView.adapter = Main1_1234Adapter(mContext, t.content)
+    lateinit var main1_1234Adapter: Main1_1234Adapter
+    override fun setMain1_1234Data(t: ReserveMainModel, action: String) {
+        if (Constants.onRefresh == action) {
+            if (page == 0 && t.content.isEmpty()) {
+                xRecyclerView.setPullRefreshEnabled(false)
+                xRecyclerView.visibility = View.GONE
+                rrrrrr.visibility = View.VISIBLE
+            } else {
+                xRecyclerView.visibility = View.VISIBLE
+                rrrrrr.visibility = View.GONE
+                main1_1234Adapter = Main1_1234Adapter(mContext, t.content,this@Main1_1Fragment)
+                xRecyclerView.adapter = main1_1234Adapter
+                xRecyclerView.refreshComplete()
+            }
+
+
+        } else {
+            if (t.content.isNotEmpty()) {
+                main1_1234Adapter.addData(t.content)
+                xRecyclerView.loadMoreComplete()
+            } else {
+                xRecyclerView.setNoMore(true)
+            }
+        }
+
     }
 
 
@@ -42,7 +67,7 @@ class Main1_1Fragment : BaseFragment(), XRecyclerView.LoadingListener, Main1_123
         main1_1234Present.getMain1_1234Data(page.toString(), TYPE, Constants.onRefresh)
     }
 
-    private val TYPE: String = "4"
+    private val TYPE: String = "6"
     var page = 0
     lateinit var main1_1234Present: Main1_1234Present
 
@@ -52,6 +77,12 @@ class Main1_1Fragment : BaseFragment(), XRecyclerView.LoadingListener, Main1_123
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader)
+        xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate)
+        xRecyclerView.defaultFootView.setLoadingHint("正在加载......")
+        xRecyclerView.defaultFootView.setNoMoreHint("数据加载完毕")
+
         xRecyclerView.layoutManager = LinearLayoutManager(mContext)
         xRecyclerView.setLoadingListener(this)
         page = 0

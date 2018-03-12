@@ -49,4 +49,9 @@ interface WEB_API {
     @POST("My/roomtype")
     fun roomtype(@Part args: MultipartBody.Part): Observable<ResponseBody>
 
+
+    @Multipart
+    @POST("Reserve/order_detail")
+    fun order_detail(@Part args: List<MultipartBody.Part>): Observable<ResponseBody>
+
 }

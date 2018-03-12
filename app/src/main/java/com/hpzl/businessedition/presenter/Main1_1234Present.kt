@@ -36,7 +36,7 @@ class Main1_1234Present(val context: Context, val main1_1234View: Main1_1234View
                     if (JSONObject(json).getInt("code") != 0) Toast.makeText(context, JSONObject(json).getString("message"), Toast.LENGTH_SHORT).show()
                     else {
                         val model = Gson().fromJson(json, ReserveMainModel::class.java)
-                        main1_1234View.setMain1_1234Data(model)
+                        main1_1234View.setMain1_1234Data(model,action)
 
                     }
 

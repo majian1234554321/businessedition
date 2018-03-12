@@ -19,7 +19,7 @@ import me.yokeyword.fragmentation.*
 import me.yokeyword.fragmentation.anim.FragmentAnimator
 
 
-open class BaseActivity : SupportActivity(), ISupportActivity {
+abstract class BaseActivity : SupportActivity(), ISupportActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
