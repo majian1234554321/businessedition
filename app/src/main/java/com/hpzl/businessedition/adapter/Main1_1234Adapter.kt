@@ -79,11 +79,12 @@ class Main1_1234Adapter(val value: String, val context: Context, val content: Ar
                 }
             }
 
-           /* tv11.setOnClickListener {
+            tv11.setOnClickListener {
                 if (fragment.parentFragment != null)
                     (fragment.parentFragment!! as MainFragment).startBrotherFragment(Main1_DetailsFragment.newInstance(content[position].id))
             }
             tv22.setOnClickListener {
+                //SweetAlertDia
 
             }
             tv33.setOnClickListener {
@@ -95,7 +96,7 @@ class Main1_1234Adapter(val value: String, val context: Context, val content: Ar
             setOnClickListener {
                 if (fragment.parentFragment != null)
                     (fragment.parentFragment!! as MainFragment).startBrotherFragment(Main1_DetailsFragment.newInstance(content[position].id))
-            }*/
+            }
 
         }
 
