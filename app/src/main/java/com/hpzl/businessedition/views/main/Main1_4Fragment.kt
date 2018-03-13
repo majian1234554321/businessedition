@@ -23,11 +23,12 @@ import kotlinx.android.synthetic.main.main1_4fragment.*
  * @date 2018/1/30
  */
 class Main1_4Fragment : BaseFragment(), Main1_1234View, XRecyclerView.LoadingListener {
+    val VALUE:String ="4"
     lateinit var main1_1234Adapter: Main1_1234Adapter
     override fun setMain1_1234Data(t: ReserveMainModel, action: String) {
         if (Constants.onRefresh == action) {
 
-            main1_1234Adapter = Main1_1234Adapter(mContext, t.content,this)
+            main1_1234Adapter = Main1_1234Adapter(VALUE,mContext, t.content,this)
 
             xRecyclerView.adapter = main1_1234Adapter
             xRecyclerView.refreshComplete()

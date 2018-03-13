@@ -29,13 +29,14 @@ class Main2Fragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tablayout.addTab(tablayout.newTab())
+        //tablayout.addTab(tablayout.newTab())
         tablayout.addTab(tablayout.newTab())
         tablayout.addTab(tablayout.newTab())
 
         val list = mutableListOf<BaseFragment>()
 
-        list.add(Main2_1Fragment())
+        //list.add(Main2_1Fragment())
+
         list.add(Main2_2Fragment())
         list.add(Main2_3Fragment())
 

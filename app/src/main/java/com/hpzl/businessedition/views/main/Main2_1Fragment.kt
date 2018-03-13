@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.google.gson.Gson
 import com.hpzl.businessedition.R
 import com.hpzl.businessedition.adapter.Main2_1Adapter
@@ -51,6 +52,7 @@ class Main2_1Fragment : BaseFragment(), XRecyclerView.LoadingListener, Main2_1Vi
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         return View.inflate(inflater.context, R.layout.main1_1fragment, null)
     }
 

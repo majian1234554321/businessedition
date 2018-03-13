@@ -23,6 +23,7 @@ import com.hpzl.businessedition.iview.Main1View
 import com.hpzl.businessedition.model.ReserveTopModel
 import com.hpzl.businessedition.presenter.Main1Present
 import com.hpzl.businessedition.utils.SPUtils
+import com.hpzl.businessedition.views.login.LoginActivity
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.uuzuche.lib_zxing.activity.CaptureActivity
 import com.uuzuche.lib_zxing.activity.CodeUtils
@@ -37,9 +38,29 @@ import me.yokeyword.fragmentation.SupportFragment
  * @date 18/1/5
  */
 class Main1Fragment : BaseFragment(), View.OnClickListener, Main1View {
+    override fun setFailedData(t: String?) {
+       if ("用户在其他设备上登陆"==t){
+           startActivity(Intent(_mActivity,LoginActivity::class.java))
+           SPUtils.removeKey("token")
+           _mActivity.finish()
+       }else{
+           titles.forEachIndexed { index, s ->
+               if (tablayout != null) {
+                   val tab = tablayout.getTabAt(index)//获得每一个tab
+                   TabTitle(_mActivity)
+                   val tabTitle = TabTitle(_mActivity)
+                   tab?.customView = tabTitle
+                   if (index == 0) tabTitle.setchecked(true)
+                   tabTitle.setValue(s, "0")
+               }
+
+           }
+       }
+    }
 
     override fun setReserveTopData(t: ReserveTopModel) {
-        val value = arrayOf(t.content.waiteQueue, t.content.waiteOrder, t.content.noArrive, t.content.orderDone)
+        val value = arrayOf( t.content.waiteOrder,t.content.waiteQueue, t.content.noArrive, t.content.orderDone)
+
         titles.forEachIndexed { index, s ->
             if (tablayout != null) {
                 val tab = tablayout.getTabAt(index)//获得每一个tab
@@ -91,8 +112,8 @@ class Main1Fragment : BaseFragment(), View.OnClickListener, Main1View {
 
         val list = mutableListOf<BaseFragment>()
 
-        list.add(Main1_1Fragment())
         list.add(Main1_2Fragment())
+        list.add(Main1_1Fragment())
         list.add(Main1_3Fragment())
         list.add(Main1_4Fragment())
 

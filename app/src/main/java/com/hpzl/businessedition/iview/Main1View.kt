@@ -9,4 +9,6 @@ import com.hpzl.businessedition.model.ReserveTopModel
  */
 interface Main1View {
     fun setReserveTopData(t: ReserveTopModel)
+
+    fun setFailedData(t: String?)
 }

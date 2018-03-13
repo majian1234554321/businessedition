@@ -42,7 +42,7 @@ data class Orders(
         @SerializedName("response") var response: Any = Any(), //null
         @SerializedName("roomnumber_id") var roomnumberId: String = "", //3
         @SerializedName("order_name") var orderName: String = "", //123456test
-        @SerializedName("created_time") var createdTime: String = "", //1517278283
+        @SerializedName("created_time") var createdTime: String ? = null, //1517278283
         @SerializedName("display_prepay") var displayPrepay: String = "", //0.00
         @SerializedName("display_balance") var displayBalance: String = "", //1000.00
         @SerializedName("coupon_amount") var couponAmount: String = "", //0.00
@@ -52,8 +52,9 @@ data class Orders(
         @SerializedName("book_sn") var bookSn: String = "", //180130101123805887
         @SerializedName("discount_rate") var discountRate: String = "", //8.40
         @SerializedName("refund_fail_reason") var refundFailReason: String = "",
-        @SerializedName("cancle_reason") var cancleReason: String = "",
+        @SerializedName("cancle_reason") var cancleReason: String? = null,
         @SerializedName("cancle_time") var cancleTime: String = "", //0
         @SerializedName("refund_time") var refundTime: String = "", //0
+        @SerializedName("origin_prepay") var origin_prepay: String = "", //0
         @SerializedName("statustext") var statustext: String = "" //已结算
 )

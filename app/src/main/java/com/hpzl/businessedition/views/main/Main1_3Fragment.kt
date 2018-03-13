@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.main1_1fragment.*
  * @date 2018/1/30
  */
 class Main1_3Fragment : BaseFragment(), Main1_1234View, XRecyclerView.LoadingListener {
+    val VALUE: String = "3"
     lateinit var main1_1234Adapter: Main1_1234Adapter
     override fun setMain1_1234Data(t: ReserveMainModel, action: String) {
         if (Constants.onRefresh == action) {
@@ -30,12 +31,17 @@ class Main1_3Fragment : BaseFragment(), Main1_1234View, XRecyclerView.LoadingLis
                     xRecyclerView.visibility = View.GONE
                 rrrrrr.visibility = View.VISIBLE
             } else {
-                if (xRecyclerView != null)
+
+                if (rrrrrr != null)
+                    rrrrrr.visibility = View.GONE
+
+                if (xRecyclerView != null) {
                     xRecyclerView.visibility = View.VISIBLE
-                rrrrrr.visibility = View.GONE
-                main1_1234Adapter = Main1_1234Adapter(mContext, t.content, this)
-                xRecyclerView.adapter = main1_1234Adapter
-                xRecyclerView.refreshComplete()
+                    main1_1234Adapter = Main1_1234Adapter(VALUE, mContext, t.content, this)
+                    xRecyclerView.adapter = main1_1234Adapter
+                    xRecyclerView.refreshComplete()
+                }
+
             }
 
 

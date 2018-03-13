@@ -33,10 +33,11 @@ class Main1_1234Present(val context: Context, val main1_1234View: Main1_1234View
                 .subscribe({
                     val json = String(it.bytes(), Charset.defaultCharset())
                     Log.i("json", json)
-                    if (JSONObject(json).getInt("code") != 0) Toast.makeText(context, JSONObject(json).getString("message"), Toast.LENGTH_SHORT).show()
-                    else {
+                    if (JSONObject(json).getInt("code") != 0) {
+                        Toast.makeText(context, JSONObject(json).getString("message")+JSONObject(json).getInt("code"), Toast.LENGTH_SHORT).show()
+                    } else {
                         val model = Gson().fromJson(json, ReserveMainModel::class.java)
-                        main1_1234View.setMain1_1234Data(model,action)
+                        main1_1234View.setMain1_1234Data(model, action)
 
                     }
 

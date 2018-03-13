@@ -21,6 +21,7 @@ import com.hpzl.businessedition.rx.APIServices
 import com.hpzl.businessedition.rx.ObserableTrans2
 import com.hpzl.businessedition.rx.Observer2
 import com.hpzl.businessedition.utils.SPUtils
+import com.hpzl.businessedition.utils.TimeUtils
 import com.jcodecraeer.xrecyclerview.XRecyclerView
 import kotlinx.android.synthetic.main.main1_detailsfragment.*
 import okhttp3.MultipartBody
@@ -37,11 +38,14 @@ class Main1_DetailsFragment : BaseFragment(), TitleBarClickListener, XRecyclerVi
         val model = mutableListOf<DetailsModel>()
 
         model.add(DetailsModel("订单号", jsonValue.content.orders.bookSn, Color.parseColor("#C4483C")))
-        model.add(DetailsModel("订单状态", jsonValue.content.orders.bookSn, Color.parseColor("#C4483C")))
-        model.add(DetailsModel("姓名", jsonValue.content.orders.bookSn, Color.parseColor("#C4483C")))
+       // model.add(DetailsModel("订单状态", jsonValue.content.orders.bookSn, Color.parseColor("#C4483C")))
+        model.add(DetailsModel("姓名", jsonValue.content.orders.nickname, Color.parseColor("#C4483C")))
 
         model.add(DetailsModel("手机", jsonValue.content.orders.mobile, Color.parseColor("#C4483C")))
-        model.add(DetailsModel("房型", jsonValue.content.orders.bookSn, Color.parseColor("#C4483C")))
+        model.add(DetailsModel("房型", jsonValue.content.orders.name, Color.parseColor("#C4483C")))
+
+
+
 
         model.add(DetailsModel("预订类型", when (jsonValue.content.orders.type) {
         //type string 预定类型 1预付预定2信用预定3充值5结单 6 套餐预订 7 优惠预订
@@ -71,19 +75,19 @@ class Main1_DetailsFragment : BaseFragment(), TitleBarClickListener, XRecyclerVi
             }
         }, Color.parseColor("#C4483C")))
 
-        model.add(DetailsModel("到店时间", jsonValue.content.orders.bookSn, Color.parseColor("#C4483C")))
-        model.add(DetailsModel("下单时间", jsonValue.content.orders.bookSn, Color.parseColor("#C4483C")))
+        model.add(DetailsModel("申请时间", TimeUtils.transForDate(jsonValue.content.orders.cancleTime?.toLongOrNull(),"yyyy-MM-dd HH:mm"), Color.parseColor("#C4483C")))
+        model.add(DetailsModel("下单时间", TimeUtils.transForDate(jsonValue.content.orders.createdTime?.toLongOrNull(),"yyyy-MM-dd HH:mm"), Color.parseColor("#C4483C")))
         model.add(DetailsModel("车位", jsonValue.content.orders.carNum, Color.parseColor("#C4483C")))
 
         model.add(DetailsModel("人数", jsonValue.content.orders.peopleNum, Color.parseColor("#C4483C")))
-        model.add(DetailsModel("订金", jsonValue.content.orders.bookSn, Color.parseColor("#C4483C")))
-        model.add(DetailsModel("消费", jsonValue.content.orders.bookSn, Color.parseColor("#C4483C")))
+        model.add(DetailsModel("订金", "￥ ${jsonValue.content.orders.displayPrepay} 元 （原价：${jsonValue.content.orders.origin_prepay}）元", Color.parseColor("#C4483C")))
+        model.add(DetailsModel("消费", "￥ ${jsonValue.content.orders.displayBalance} 元", Color.parseColor("#C4483C")))
 
-        model.add(DetailsModel("不参与优惠金额", jsonValue.content.orders.bookSn, Color.parseColor("#C4483C")))
-        model.add(DetailsModel("折扣", jsonValue.content.orders.bookSn, Color.parseColor("#C4483C")))
-        model.add(DetailsModel("实际支付", jsonValue.content.orders.bookSn, Color.parseColor("#C4483C")))
+        model.add(DetailsModel("不参与优惠金额", "￥ ${jsonValue.content.orders.couponAmount} 元", Color.parseColor("#C4483C")))
+        model.add(DetailsModel("折扣","${jsonValue.content.orders.discountRate} 折", Color.parseColor("#C4483C")))
+        model.add(DetailsModel("实际支付", jsonValue.content.orders.displayTotal, Color.parseColor("#C4483C")))
 
-        model.add(DetailsModel("支付方式", when (jsonValue.content.orders.status) {
+        model.add(DetailsModel("支付方式", when (jsonValue.content.orders.payMethod) {
         //status string 状态 0 待付款 1已取消 2 预定成功 3 正在消费 4 已结算 5 待处理 6 待排 7 未到 8 未付定金 9 已评论
             "0" -> {
                 "待付款"
@@ -95,32 +99,18 @@ class Main1_DetailsFragment : BaseFragment(), TitleBarClickListener, XRecyclerVi
                 "预定成功"
             }
             "3" -> {
-                "正在消费"
+                "余额支付"
             }
             "4" -> {
                 "已结算"
             }
-            "5" -> {
-                "待处理"
-            }
-            "6" -> {
-                "待排"
-            }
-            "7" -> {
-                "未到"
-            }
-            "8" -> {
-                "未付定金"
-            }
-            "9" -> {
-                "已评论"
-            }
+
             else -> {
                 jsonValue.content.orders.payMethod
             }
         }, Color.parseColor("#C4483C")))
         model.add(DetailsModel("备注", jsonValue.content.orders.remark, Color.parseColor("#C4483C")))
-        model.add(DetailsModel("分配房间号", jsonValue.content.orders.bookSn, Color.parseColor("#C4483C")))
+        model.add(DetailsModel("分配房间号", jsonValue.content.orders.number, Color.parseColor("#C4483C")))
         if (xRecyclerView != null) {
             xRecyclerView.refreshComplete()
             xRecyclerView.layoutManager = LinearLayoutManager(mContext)

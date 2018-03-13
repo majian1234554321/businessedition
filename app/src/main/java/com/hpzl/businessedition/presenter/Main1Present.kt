@@ -21,7 +21,8 @@ class Main1Present(val main1View: Main1View) {
                 .subscribe(object : Consumer2<ReserveTopModel>() {
                     override fun failed(t: String?) {
                         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                        Log.i("TAG",t)
+                        Log.i("TAG",t+"1")
+                        main1View.setFailedData(t)
                     }
 
                     override fun successed(t: ReserveTopModel) {

@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.main1_1fragmentadapter.view.*
  * @author admin
  * @date 2018/1/30
  */
-class Main1_1234Adapter(val context: Context, val content: Array<ReserveMainModel.ContentBean>, val fragment: BaseFragment) : RecyclerView.Adapter<Main1_1234Adapter.ViewHolder>() {
+class Main1_1234Adapter(val value: String, val context: Context, val content: Array<ReserveMainModel.ContentBean>, val fragment: BaseFragment) : RecyclerView.Adapter<Main1_1234Adapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(View.inflate(context, R.layout.main1_1fragmentadapter, null))
 
     override fun getItemCount(): Int = content.size
@@ -59,10 +59,43 @@ class Main1_1234Adapter(val context: Context, val content: Array<ReserveMainMode
             tv10.text = "消费: ${content[position].display_balance}"
 
 
-                setOnClickListener {
-                    if (fragment.parentFragment != null)
-                        (fragment.parentFragment!! as MainFragment).startBrotherFragment(Main1_DetailsFragment.newInstance(content[position].id))
+            when (value) {
+                "1" -> {
+                    tv22.text = "确认到达"
+                    tv33.text = "取消订单"
+                    tv22.visibility = View.VISIBLE
+                    tv33.visibility = View.VISIBLE
+                }
+                "2" -> {
+                    tv22.text = "同意申请"
+                    tv33.text = "拒绝申请"
+                    tv22.visibility = View.VISIBLE
+                    tv33.visibility = View.VISIBLE
+                }
+
+                else -> {
+                    tv22.visibility = View.GONE
+                    tv33.visibility = View.GONE
+                }
             }
+
+           /* tv11.setOnClickListener {
+                if (fragment.parentFragment != null)
+                    (fragment.parentFragment!! as MainFragment).startBrotherFragment(Main1_DetailsFragment.newInstance(content[position].id))
+            }
+            tv22.setOnClickListener {
+
+            }
+            tv33.setOnClickListener {
+
+            }
+
+
+
+            setOnClickListener {
+                if (fragment.parentFragment != null)
+                    (fragment.parentFragment!! as MainFragment).startBrotherFragment(Main1_DetailsFragment.newInstance(content[position].id))
+            }*/
 
         }
 
