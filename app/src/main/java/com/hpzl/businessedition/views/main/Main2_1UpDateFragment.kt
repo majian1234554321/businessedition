@@ -1,5 +1,6 @@
 package com.hpzl.businessedition.views.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import com.hpzl.businessedition.R
 import com.hpzl.businessedition.base.BaseFragment
 import com.hpzl.businessedition.imp.TitleBarClickListener
 import com.hpzl.businessedition.model.RoomTypeModel
+import com.hpzl.businessedition.rx.RxBus
 import kotlinx.android.synthetic.main.main2_1updatefragment.*
 
 /**
@@ -49,6 +51,13 @@ class Main2_1UpDateFragment : BaseFragment(), TitleBarClickListener {
         tbv.setOnLeftClickListener(this)
         tv_update.setOnClickListener {
             et_price.text.trim().toString()
+            val  intent =  Intent()
+            intent.putExtra("key",et_price.text.trim().toString())
+            intent.putExtra("name","Main2_1Fragment")
+            RxBus.getDefault().post(intent)
+            _mActivity.onBackPressed()
+
+
         }
         val bundle = arguments
 

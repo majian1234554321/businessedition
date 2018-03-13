@@ -14,9 +14,11 @@ import com.hpzl.businessedition.base.BaseFragment
 import com.hpzl.businessedition.iview.Main2_1View
 import com.hpzl.businessedition.model.RoomTypeModel
 import com.hpzl.businessedition.presenter.Main2_1Present
+import com.hpzl.businessedition.rx.RxBus
 import com.hpzl.businessedition.utils.SPUtils
 import com.hpzl.businessedition.views.login.LoginActivity
 import com.jcodecraeer.xrecyclerview.XRecyclerView
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.main1_1fragment.*
 
 
@@ -54,6 +56,14 @@ class Main2_1Fragment : BaseFragment(), XRecyclerView.LoadingListener, Main2_1Vi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        RxBus.getDefault().toFlowable(Intent::class.java)
+                .subscribe(Consumer {
+                    if (it.getStringExtra("value") != null) {
+                        if (xRecyclerView != null)
+                            xRecyclerView.refresh()
+                    }
+                })
 
 
         xRecyclerView.setLoadingMoreEnabled(false)
