@@ -1,6 +1,7 @@
 package com.hpzl.businessedition.views
 
 
+import android.content.Intent
 import android.os.Bundle
 
 import com.hpzl.businessedition.R
@@ -34,4 +35,8 @@ class MainActivity : SupportActivity() {
         // 设置横向(和安卓4.x动画相同)
         return DefaultHorizontalAnimator()
     }
+
+
+
+
 }

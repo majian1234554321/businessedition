@@ -1,6 +1,7 @@
 package com.hpzl.businessedition.base
 
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -16,7 +17,7 @@ import me.yokeyword.fragmentation.SupportFragment
  * @date 2018/1/29
  */
 abstract class BaseFragment : SupportFragment()  {
-    lateinit var mContext: Context
+    lateinit var mContext: Activity
 
 
     fun <T> MutableList<T>.addElement(fragment: T): MutableList<T> {
@@ -36,7 +37,7 @@ abstract class BaseFragment : SupportFragment()  {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        mContext = context
+        mContext =  activity as Activity
 
     }
 

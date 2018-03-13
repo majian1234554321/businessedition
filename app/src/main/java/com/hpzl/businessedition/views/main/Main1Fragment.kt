@@ -1,11 +1,19 @@
 package com.hpzl.businessedition.views.main
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.content.ContextCompat
+import android.support.v4.content.PermissionChecker
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 import com.hpzl.businessedition.R
 import com.hpzl.businessedition.adapter.Main1FragmentAdapter
@@ -15,16 +23,19 @@ import com.hpzl.businessedition.iview.Main1View
 import com.hpzl.businessedition.model.ReserveTopModel
 import com.hpzl.businessedition.presenter.Main1Present
 import com.hpzl.businessedition.utils.SPUtils
+import com.tbruyelle.rxpermissions2.RxPermissions
+import com.uuzuche.lib_zxing.activity.CaptureActivity
+import com.uuzuche.lib_zxing.activity.CodeUtils
 import kotlinx.android.synthetic.main.viewpager1fragment.*
 
 import me.yokeyword.fragmentation.SupportFragment
 
 
 /**
-*
-* @author ViewPager1Fragment
-* @date 16/6/5
-*/
+ *
+ * @author ViewPager1Fragment
+ * @date 18/1/5
+ */
 class Main1Fragment : BaseFragment(), View.OnClickListener, Main1View {
 
     override fun setReserveTopData(t: ReserveTopModel) {
@@ -45,8 +56,23 @@ class Main1Fragment : BaseFragment(), View.OnClickListener, Main1View {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.iv_qrScan -> {
+
+                if (ContextCompat.checkSelfPermission(_mActivity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+
+
+                    requestPermissions(
+                            arrayOf(Manifest.permission.CAMERA), 10085)
+
+
+                } else {
+                    val intent = Intent(mContext, CaptureActivity::class.java)
+                    startActivityForResult(intent, 10086)
+                }
+
+
             }
             R.id.tv_search -> {
+
             }
             else -> {
             }
@@ -104,5 +130,45 @@ class Main1Fragment : BaseFragment(), View.OnClickListener, Main1View {
             fragment.arguments = args
             return fragment
         }
+    }
+
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (PermissionChecker.checkSelfPermission(mContext, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            val intent = Intent(mContext, CaptureActivity::class.java)
+            startActivityForResult(intent, 10086)
+        }
+
+        if (requestCode == 10085) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                val intent = Intent(mContext, CaptureActivity::class.java)
+                startActivityForResult(intent, 10086)
+            } else {
+                // Permission Denied
+                Toast.makeText(mContext, "权限被限制", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        //
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 10086) {
+            // 处理扫描结果（在界面上显示）
+            if (null != data) {
+                val bundle = data.extras ?: return
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    val result = bundle.getString(CodeUtils.RESULT_STRING)
+
+
+                }
+            }
+        }
+
     }
 }

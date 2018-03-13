@@ -23,11 +23,11 @@ import kotlinx.android.synthetic.main.main1_1fragmentadapter.view.*
  * @date 2018/1/30
  */
 class Main1_1234Adapter(val context: Context, val content: Array<ReserveMainModel.ContentBean>, val fragment: BaseFragment) : RecyclerView.Adapter<Main1_1234Adapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder = ViewHolder(View.inflate(context, R.layout.main1_1fragmentadapter, null))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(View.inflate(context, R.layout.main1_1fragmentadapter, null))
 
     override fun getItemCount(): Int = content.size
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder?.itemView!!) {
             tv_payStatus.text = when (content[position].pay_method) {
 

@@ -14,11 +14,11 @@ import kotlinx.android.synthetic.main.detailitemview.view.*
  * @date 2018/2/5
  */
 class Main1_DetailsAdapter(val mContext: Context, val array: MutableList<DetailsModel>) : RecyclerView.Adapter<Main1_DetailsAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder = ViewHolder(View.inflate(mContext, R.layout.detailitemview, null))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(View.inflate(mContext, R.layout.detailitemview, null))
 
     override fun getItemCount(): Int =array.size
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder?.itemView!!){
             tv_left.text = array[position].valueleft
             tv_right.text= array[position].valueright

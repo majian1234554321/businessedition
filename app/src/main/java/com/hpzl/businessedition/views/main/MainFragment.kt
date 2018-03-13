@@ -1,13 +1,19 @@
 package com.hpzl.businessedition.views.main
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.content.PermissionChecker
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.hpzl.businessedition.R
 import com.hpzl.businessedition.base.BaseFragment
 import com.hpzl.businessedition.customerview.BottomBar
 import com.hpzl.businessedition.customerview.BottomBarTab
+import com.uuzuche.lib_zxing.activity.CaptureActivity
 import kotlinx.android.synthetic.main.mainfragment.*
 import me.yokeyword.fragmentation.SupportFragment
 
@@ -133,4 +139,7 @@ class MainFragment : BaseFragment(), BottomBar.OnTabSelectedListener {
     fun startBrotherFragment(targetFragment: SupportFragment) {
         start(targetFragment)
     }
+
+
+
 }

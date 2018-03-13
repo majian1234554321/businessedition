@@ -18,11 +18,13 @@ import me.yokeyword.fragmentation.SupportFragment
  * @date 2018/1/31
  */
 class Main2_1Adapter(val context: Context, val content: MutableList<RoomTypeModel.ContentBean>, val main2_1Fragment: Main2_1Fragment) : RecyclerView.Adapter<Main2_1Adapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder = ViewHolder(View.inflate(context, R.layout.main2_1adapter, null))
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(View.inflate(context, R.layout.main2_1adapter, null))
 
     override fun getItemCount(): Int = content.size
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder?.itemView!!) {
             tv_housetype_name.text = "${content[position].name} (${content[position].mans}人) "
             tv_housetype_price.text = "${content[position].book_price} 元"
